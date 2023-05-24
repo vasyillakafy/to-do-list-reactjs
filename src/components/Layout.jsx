@@ -1,22 +1,36 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./layout.css"
 import { Container } from 'react-bootstrap';
-import { NavLink } from "react-router-dom"
-import TodoCard from './TodoCard';
+import { NavLink, Outlet } from "react-router-dom"
+import { useDispatch, useSelector } from 'react-redux';
+import { actions } from '../features/todoSlice';
 
 const Layout = () => {
+  const userInput = useSelector(state => state.todos.userInput);
+  const dispatch = useDispatch();
+
+  const handleCreateTodo = (e) => {
+    e.preventDefault();
+    dispatch(actions.createTodo())
+  }
+
+  const handleSetUserInput = (userInput) => {
+    dispatch(actions.setUserInput({userInput}))
+  }
+
   return(
-      <div className='bg'>
+      <>
+        <div className='p-4'></div>
         <Container className='bg-body rounded mx-auto'>
-          <h4 className='text-center p-5'>What's The Plan For Today?</h4>
+          <h5 className='text-center p-4'>What's The Plan For Today?</h5>
           <div className='row justify-content-center'>
             <input 
               type="text" 
-              name="" 
-              id="" 
-              className='col-9 rounded p-2' 
+              value={userInput}
+              onChange={(e) => handleSetUserInput(e.target.value)} 
+              className='col-8 rounded p-2 mx-2' 
               placeholder='Enter your activity' />
-            <button className='btn-cs col-1 rounded p-2'>Add</button>
+            <button onClick={handleCreateTodo} className='btn-cs col-1 rounded p-2'>Add</button>
           </div>
           <div className='mt-3 p-3'>
             <nav> 
@@ -32,12 +46,13 @@ const Layout = () => {
                 </li>
               </ul>
             </nav>
-          <TodoCard/>
-          <TodoCard/>
           </div>
-
+          <section className="p-2">
+            <Outlet />
+          </section>
         </Container>
-    </div>
+        <div className='p-4'></div>
+    </>
   )
 }
 
