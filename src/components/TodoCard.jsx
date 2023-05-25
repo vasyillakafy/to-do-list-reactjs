@@ -41,10 +41,10 @@ const TodoCard = ({todo}) => {
             className="p-2 flex-grow-1 bd-highlight rounded" 
             onChange={(e)=> setUpdatedContent(e.target.value)}/>
         ) : (
-          <p className="p-2 flex-grow-1 bd-highlight"
+          <h6 className="p-2 flex-grow-1 bd-highlight"
               style={{textDecoration: todo.completed ? "line-through" : "none"}}>
             {todo.content}
-          </p>
+          </h6>
         )
       }
       {editing ? (
