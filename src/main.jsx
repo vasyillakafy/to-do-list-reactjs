@@ -30,11 +30,12 @@ store.subscribe(() => saveToLocalStorage(store.getState()))
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-        <Route path='/' element={<Layout/>} errorElement={<ErrorPage/>}>
+        <Route path='/' element={<Layout/>}>
           <Route index={true} element={<All/>}/>
           <Route path='active' element={<Active/>}/>
           <Route path='completed' element={<Completed/>}/>
         </Route>
+        <Route path='*' element={<ErrorPage/>}/>
     </>
   )
 )

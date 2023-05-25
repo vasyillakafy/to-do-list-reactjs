@@ -38,13 +38,13 @@ const TodoCard = ({todo}) => {
           <input 
             type="text" 
             value={updatedContent}
-            className="p-2 flex-grow-1 bd-highlight" 
+            className="p-2 flex-grow-1 bd-highlight rounded" 
             onChange={(e)=> setUpdatedContent(e.target.value)}/>
         ) : (
-          <h6 className="p-2 flex-grow-1 bd-highlight"
+          <p className="p-2 flex-grow-1 bd-highlight"
               style={{textDecoration: todo.completed ? "line-through" : "none"}}>
             {todo.content}
-          </h6>
+          </p>
         )
       }
       {editing ? (
