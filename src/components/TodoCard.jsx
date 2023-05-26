@@ -53,7 +53,7 @@ const TodoCard = ({todo}) => {
           <FaCheckCircle/>
         </button> 
       ) : (
-        <button onClick={handleEdit} 
+        <button onClick={handleEdit} disabled={todo.completed}
                 className="p-2 bd-highlight mx-2 rounded btn-cs">
           <FaPencilAlt/>
         </button>
